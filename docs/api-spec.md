@@ -238,7 +238,7 @@ The provided UI supports:
 
 ---
 
-# HTTP Status
+# HTTP status codes returned from API
 
 | Status | Meaning                            |
 | ------ | ---------------------------------- |
@@ -314,7 +314,26 @@ curl -X POST http://localhost:8080/v1/library/borrows/{id}/return
 
 ---
 
-# PostgreSQL for production
+# PostgreSQL for production - setup reasons
+
+PostgreSQL is a full-featured, production-grade RDBMS.
+1. It Supports transactions, concurrency, indexing, constraints, locks, etc.
+Ensures data integrity and consistency under real load.
+
+2. Reliability & durability
+
+Data is persisted to disk safely (crash recovery, logs).
+Handles failures, backups, replication in real environments (unlike docker).
+
+3. Performance at scale
+
+Optimized query planner.
+Handles large datasets and many concurrent users.
+
+4. Advanced features
+
+JSONB, full-text search, extensions.
+Strong SQL and ACID compliance ideal for normalized relational data
 
 Ensure:
 
