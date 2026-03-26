@@ -30,8 +30,7 @@ public interface BookRepository extends JpaRepository<Book, UUID> {
 
     // Custom query to find the first book with a specific ISBN
     @Lock(LockModeType.PESSIMISTIC_WRITE)
-    @Query("SELECT b FROM Book b WHERE b.isbn = :isbn")
-    Optional<Book> findFirstByIsbn(String isbn);
+    Optional<Book> findTopByIsbnOrderByIdAsc(String isbn);
 
     // save is inherited from JpaRepository, no need to declare it explicitly
     // Book save(Book book);

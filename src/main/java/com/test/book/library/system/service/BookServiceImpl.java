@@ -38,7 +38,7 @@ public class BookServiceImpl implements BookService {
                 book.getAuthor());
 
         // Orchestration of the book registration
-        Optional<Book> existingBookOpt = bookRepository.findFirstByIsbn(book.getIsbn());
+        Optional<Book> existingBookOpt = bookRepository.findTopByIsbnOrderByIdAsc(book.getIsbn());
 
         if (existingBookOpt.isPresent()) {
             Book existingBook = existingBookOpt.get();

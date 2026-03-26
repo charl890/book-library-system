@@ -317,23 +317,18 @@ curl -X POST http://localhost:8080/v1/library/borrows/{id}/return
 # PostgreSQL for production - setup reasons
 
 PostgreSQL is a full-featured, production-grade RDBMS.
+
 1. It Supports transactions, concurrency, indexing, constraints, locks, etc.
-Ensures data integrity and consistency under real load.
+   Ensures data integrity and consistency under real load.
 
-2. Reliability & durability
+2. Reliability & durability - Data is persisted to disk safely (crash recovery, logs).
+   Handles failures, backups, replication in real environments (unlike docker).
 
-Data is persisted to disk safely (crash recovery, logs).
-Handles failures, backups, replication in real environments (unlike docker).
+3. Performance at scale - Optimized query planner.
+   Handles large datasets and many concurrent users.
 
-3. Performance at scale
-
-Optimized query planner.
-Handles large datasets and many concurrent users.
-
-4. Advanced features
-
-JSONB, full-text search, extensions.
-Strong SQL and ACID compliance ideal for normalized relational data
+4. Advanced features - JSONB, full-text search, extensions.
+   Strong SQL and ACID compliance ideal for normalized relational data
 
 Ensure:
 
@@ -369,6 +364,7 @@ docker compose up -d # or docker compose up --build
 - http://localhost:8080/api/v3/api-docs -- API docs
 - http://localhost:8080/api/library.html -- Test HTML/js UI
 - http://localhost:8080/api/swagger-ui/index.html -- Swagger
+- [Postman collection](../LIBRARY_SYSTEM.postman_collection.json)
 
 ---
 

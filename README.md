@@ -1,5 +1,7 @@
 # Java Spring Boot REST API - Library Management System
 
+[API documentation](docs/api-spec.md)
+
 ## JaCoCo Code Coverage
 
 <img src="./Screenshot - JaCoCo Code Coverage.png" alt="JaCoCo code coverage" width="800" style="border-radius: 10px; border: 1px solid #e1e4e8;">
@@ -228,6 +230,8 @@ docker compose up --build
 
 - Swagger UI:
   [http://localhost:8080/api/swagger-ui/index.html](http://localhost:8080/api/swagger-ui/index.html)
+
+- [Postman collection](./LIBRARY_SYSTEM.postman_collection.json)
 
 ## 7. Stop Docker
 

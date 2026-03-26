@@ -67,7 +67,7 @@ class BookServiceImplTest {
   @Test
   void registerBook_WhenIsbnNotExists_ShouldSaveBook() {
 
-    when(bookRepository.findFirstByIsbn(newBook.getIsbn())).thenReturn(Optional.empty());
+    when(bookRepository.findTopByIsbnOrderByIdAsc(newBook.getIsbn())).thenReturn(Optional.empty());
     when(bookRepository.save(newBook)).thenReturn(newBook);
 
     Book savedBook = bookService.registerBook(newBook);
@@ -80,7 +80,7 @@ class BookServiceImplTest {
   @Test
   void registerBook_WhenSaveFails_ShouldThrowException() {
 
-    when(bookRepository.findFirstByIsbn(newBook.getIsbn()))
+    when(bookRepository.findTopByIsbnOrderByIdAsc(newBook.getIsbn()))
         .thenReturn(Optional.empty());
 
     when(bookRepository.save(newBook))
@@ -93,7 +93,7 @@ class BookServiceImplTest {
   @Test
   void registerBook_WhenRepositoryFails_ShouldPropagateException() {
 
-    when(bookRepository.findFirstByIsbn(newBook.getIsbn()))
+    when(bookRepository.findTopByIsbnOrderByIdAsc(newBook.getIsbn()))
         .thenThrow(new RuntimeException("DB error"));
 
     assertThrows(RuntimeException.class,
@@ -125,7 +125,7 @@ class BookServiceImplTest {
         .author(newBook.getAuthor()) // same author
         .build();
 
-    when(bookRepository.findFirstByIsbn(newBook.getIsbn())).thenReturn(
+    when(bookRepository.findTopByIsbnOrderByIdAsc(newBook.getIsbn())).thenReturn(
         Optional.of(consistentExistingBook));
     when(bookRepository.save(newBook)).thenReturn(newBook);
 
@@ -145,7 +145,7 @@ class BookServiceImplTest {
         .author("Different Author")
         .build();
 
-    when(bookRepository.findFirstByIsbn(newBook.getIsbn())).thenReturn(
+    when(bookRepository.findTopByIsbnOrderByIdAsc(newBook.getIsbn())).thenReturn(
         Optional.of(inconsistentBook));
 
     assertThrows(BookRegistrationFailureException.class, () -> bookService.registerBook(newBook));
