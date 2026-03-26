@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Library Management</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap & Icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/a2e0a6adcf.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <style>
+      body {
+        background: #f8f9fa;
+      }
+      .card {
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      .loading-spinner {
+        display: none;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body class="p-4">
+    <div class="container">
+      <h1 class="text-center mb-4">
+        <i class="fas fa-book-reader"></i> Library Management System
+      </h1>
+
+      <div class="row g-4">
+        <!-- Register Book -->
+        <div class="col-md-6">
+          <div class="card p-3">
+            <h4><i class="fas fa-plus-circle"></i> Register Book</h4>
+            <form id="bookForm">
+              <div class="mb-2">
+                <label class="form-label">ISBN</label>
+                <input type="text" class="form-control" id="isbn" required />
+              </div>
+              <div class="mb-2">
+                <label class="form-label">Title</label>
+                <input type="text" class="form-control" id="title" required />
+              </div>
+              <div class="mb-2">
+                <label class="form-label">Author</label>
+                <input type="text" class="form-control" id="author" required />
+              </div>
+              <button class="btn btn-success" type="submit">
+                <i class="fas fa-save"></i> Save
+              </button>
+            </form>
+            <div class="loading-spinner mt-2" id="bookLoading">
+              <div class="spinner-border text-success"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Register Borrower -->
+        <div class="col-md-6">
+          <div class="card p-3">
+            <h4><i class="fas fa-user-plus"></i> Register Borrower</h4>
+            <form id="borrowerForm">
+              <div class="mb-2">
+                <label class="form-label">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="borrowerName"
+                  required
+                />
+              </div>
+              <div class="mb-2">
+                <label class="form-label">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="borrowerEmail"
+                  required
+                />
+              </div>
+              <button class="btn btn-primary" type="submit">
+                <i class="fas fa-save"></i> Save
+              </button>
+            </form>
+            <div class="loading-spinner mt-2" id="borrowerLoading">
+              <div class="spinner-border text-primary"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Book List -->
+        <div class="col-md-6">
+          <div class="card p-3">
+            <h4><i class="fas fa-list"></i> Book List</h4>
+            <div id="bookList" class="mt-2"></div>
+          </div>
+        </div>
+
+        <!-- Borrower List -->
+        <div class="col-md-6">
+          <div class="card p-3">
+            <h4><i class="fas fa-users"></i> Borrower List</h4>
+            <div id="borrowerList" class="mt-2"></div>
+          </div>
+        </div>
+
+        <!-- Assign Book -->
+        <div class="col-md-12">
+          <div class="card p-3">
+            <h4><i class="fas fa-link"></i> Assign Book to Borrower</h4>
+            <form id="assignForm" class="row g-2">
+              <div class="col-md-5">
+                <select class="form-select" id="assignBook" required></select>
+              </div>
+              <div class="col-md-5">
+                <select
+                  class="form-select"
+                  id="assignBorrower"
+                  required
+                ></select>
+              </div>
+              <div class="col-md-2">
+                <button class="btn btn-warning w-100" type="submit">
+                  <i class="fas fa-handshake"></i> Assign
+                </button>
+              </div>
+            </form>
+            <div class="loading-spinner mt-2" id="assignLoading">
+              <div class="spinner-border text-warning"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Current Borrowed Books -->
+        <div class="col-md-12">
+          <div class="card p-3">
+            <h4><i class="fas fa-book"></i> Current Borrowed Books</h4>
+            <div id="borrowedList" class="mt-2"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- API Calls -->
+    <script>
+      const API_BASE = "/api/v1/library";
+
+      // Fetch all books
+      async function fetchBooks() {
+        const res = await fetch(`${API_BASE}/books`);
+        const data = await res.json();
+        let html = "<ul class='list-group'>";
+        let options = "";
+        data.forEach((b) => {
+          html += `<li class="list-group-item">${b.title} by ${b.author} [${b.isbn}]</li>`;
+          options += `<option value="${b.bookId}">${b.title} (${b.isbn})</option>`;
+        });
+        html += "</ul>";
+        document.getElementById("bookList").innerHTML = html;
+        document.getElementById("assignBook").innerHTML = options;
+      }
+
+      // Fetch all borrowers
+      async function fetchBorrowers() {
+        const res = await fetch(`${API_BASE}/borrowers`);
+        const data = await res.json();
+        let html = "<ul class='list-group'>";
+        let options = "";
+        data.forEach((br) => {
+          html += `<li class="list-group-item">${br.name} (${br.email})</li>`;
+          options += `<option value="${br.borrowerId}">${br.name}</option>`;
+        });
+        html += "</ul>";
+        document.getElementById("borrowerList").innerHTML = html;
+        document.getElementById("assignBorrower").innerHTML = options;
+      }
+
+      // Fetch current borrowed books
+      async function fetchBorrowedBooks() {
+        const res = await fetch(`${API_BASE}/borrows/active`);
+        const data = await res.json();
+        let html = "<ul class='list-group'>";
+        data.forEach((record) => {
+          html += `
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <span><strong>${record.bookTitle}</strong> borrowed by ${record.borrowerName}</span>
+            <button class="btn btn-sm btn-danger" onclick="returnBook('${record.borrowId}')">
+              <i class="fas fa-undo"></i> Return
+            </button>
+          </li>`;
+        });
+        html += "</ul>";
+        document.getElementById("borrowedList").innerHTML = html;
+      }
+
+      // Return a book
+      async function returnBook(recordId) {
+        await fetch(`${API_BASE}/borrows/${recordId}/return`, { method: "POST" });
+        fetchBorrowedBooks();
+      }
+
+      // Register book
+      document
+        .getElementById("bookForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          document.getElementById("bookLoading").style.display = "block";
+          const book = {
+            isbn: document.getElementById("isbn").value,
+            title: document.getElementById("title").value,
+            author: document.getElementById("author").value,
+          };
+          await fetch(`${API_BASE}/books`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(book),
+          });
+          document.getElementById("bookLoading").style.display = "none";
+          e.target.reset();
+          fetchBooks();
+        });
+
+      // Register borrower
+      document
+        .getElementById("borrowerForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          document.getElementById("borrowerLoading").style.display = "block";
+          const borrower = {
+            name: document.getElementById("borrowerName").value,
+            email: document.getElementById("borrowerEmail").value,
+          };
+          await fetch(`${API_BASE}/borrowers`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(borrower),
+          });
+          document.getElementById("borrowerLoading").style.display = "none";
+          e.target.reset();
+          fetchBorrowers();
+        });
+
+      // Assign book to borrower
+      document
+        .getElementById("assignForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const assignLoading = document.getElementById("assignLoading");
+          assignLoading.style.display = "block";
+
+          const borrowerId = document.getElementById("assignBorrower").value;
+          const bookId = document.getElementById("assignBook").value;
+          const payload = {
+            borrowerId,
+            bookId,
+            borrowMsg: `Borrowed by ${document.getElementById("assignBorrower").selectedOptions[0].text}`,
+          };
+
+          try {
+            await fetch(`${API_BASE}/borrows`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(payload),
+            });
+            await fetchBorrowedBooks(); // Only update borrowed list
+          } finally {
+            assignLoading.style.display = "none";
+          }
+        });
+
+      // Initial load
+      fetchBooks();
+      fetchBorrowers();
+      fetchBorrowedBooks();
+    </script>
+  </body>
+</html>

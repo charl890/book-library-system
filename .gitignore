@@ -1,0 +1,127 @@
+# =========================
+# Project / Maven Wrapper
+# =========================
+HELP.md
+target/
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# =========================
+# Java / Spring Boot
+# =========================
+*.class
+*.jar
+*.war
+*.ear
+
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+
+# Spring Boot Dev Tools
+spring-devtools.properties
+
+# =========================
+# Gradle
+# =========================
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# =========================
+# IDEs
+# =========================
+
+## IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+## Eclipse / STS
+.classpath
+.project
+.settings/
+.springBeans
+.sts4-cache
+.apt_generated
+bin/
+
+## NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+## VS Code
+.vscode/
+
+# =========================
+# Logs & Runtime
+# =========================
+*.log
+logs/
+log/
+*.tmp
+*.swp
+
+# =========================
+# OS Files
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Environment / Secrets
+# =========================
+.env
+.env.*
+
+application-local.properties
+application-local.yml
+application-dev.properties
+application-dev.yml
+
+# =========================
+# Test & Coverage
+# =========================
+target/surefire-reports/
+target/failsafe-reports/
+jacoco.exec
+coverage/
+
+# =========================
+# Static UI / Frontend
+# =========================
+src/main/resources/static/node_modules/
+src/main/resources/static/dist/
+src/main/resources/static/build/
+
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# =========================
+# Package Managers
+# =========================
+package-lock.json
+yarn.lock
+
+# =========================
+# Temporary / Backup Files
+# =========================
+*.pid
+*.pid.lock
+*.seed
+*.bak
+*.backup
+*.old
+*.orig

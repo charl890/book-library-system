@@ -1,0 +1,256 @@
+{
+  "info": {
+    "_postman_id": "d2be7379-3ae8-46a2-af0a-a68ea2bd92f8",
+    "name": "LIBRARY_SYSTEM",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "1753007"
+  },
+  "item": [
+    {
+      "name": "BOOKS_LIST",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:8080/api/v1/library/books",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "v1", "library", "book"],
+          "query": [
+            {
+              "key": "",
+              "value": "www",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "BORROWERS_LIST",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:8080/api/v1/library/borrowers",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "v1", "library", "borrower"],
+          "query": [
+            {
+              "key": "",
+              "value": "www",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "BORROW_CURRENT",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:8080/api/v1/library/borrows/active",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "v1", "library", "current"],
+          "query": [
+            {
+              "key": "",
+              "value": "www",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "BOOK_REGISTER",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"isbn\": \"9780134685991\",\r\n  \"title\": \"Effective Java\",\r\n  \"author\": \"Joshua Bloch\"\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:8080/api/v1/library/books",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "v1", "library", "book"],
+          "query": [
+            {
+              "key": "",
+              "value": "www",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "BORROWER_REGISTER",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"John Doe\",\r\n    \"email\": \"johndoe@example.com\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:8080/api/v1/library/borrowers",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "v1", "library", "borrower"],
+          "query": [
+            {
+              "key": "",
+              "value": "www",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "BORROW",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"borrowerId\": \"e4585e69-321e-4f60-8e46-8b2adb650abe\",\r\n  \"bookId\": \"afe38744-78e8-428d-97f5-d3b3854da8c2\",\r\n  \"borrowMsg\": \"Borrowed by Eranda\"\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:8080/api/v1/library/borrows",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "v1", "library", "borrow"],
+          "query": [
+            {
+              "key": "",
+              "value": "www",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "RETURN_BOOK",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"isbn\": \"9780134685991\",\r\n  \"title\": \"Effective Java\",\r\n  \"author\": \"Joshua Bloch\"\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:8080/api/v1/library/borrows/9a523bd8-257f-40da-8d09-b82c2b4e7a70/return",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": [
+            "api",
+            "v1",
+            "library",
+            "9a523bd8-257f-40da-8d09-b82c2b4e7a70",
+            "return"
+          ],
+          "query": [
+            {
+              "key": "",
+              "value": "www",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
