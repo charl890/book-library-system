@@ -114,9 +114,6 @@ pom.xml
 docker-compose.yml
 Dockerfile
 
-docker/
-├── postgres/
-│   └── init.sql
 ```
 
 ---
