@@ -1,9 +1,10 @@
 {
   "info": {
-    "_postman_id": "d2be7379-3ae8-46a2-af0a-a68ea2bd92f8",
+    "_postman_id": "e98f86c3-526d-4187-8ca2-1896c38021d1",
     "name": "LIBRARY_SYSTEM",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "1753007"
+    "_exporter_id": "53512403",
+    "_collection_link": "https://go.postman.co/collection/53512403-e98f86c3-526d-4187-8ca2-1896c38021d1?source=collection_link"
   },
   "item": [
     {
@@ -28,9 +29,16 @@
         },
         "url": {
           "raw": "localhost:8080/api/v1/library/books",
-          "host": ["localhost"],
+          "host": [
+            "localhost"
+          ],
           "port": "8080",
-          "path": ["api", "v1", "library", "book"],
+          "path": [
+            "api",
+            "v1",
+            "library",
+            "books"
+          ],
           "query": [
             {
               "key": "",
@@ -64,9 +72,16 @@
         },
         "url": {
           "raw": "localhost:8080/api/v1/library/borrowers",
-          "host": ["localhost"],
+          "host": [
+            "localhost"
+          ],
           "port": "8080",
-          "path": ["api", "v1", "library", "borrower"],
+          "path": [
+            "api",
+            "v1",
+            "library",
+            "borrowers"
+          ],
           "query": [
             {
               "key": "",
@@ -100,9 +115,17 @@
         },
         "url": {
           "raw": "localhost:8080/api/v1/library/borrows/active",
-          "host": ["localhost"],
+          "host": [
+            "localhost"
+          ],
           "port": "8080",
-          "path": ["api", "v1", "library", "current"],
+          "path": [
+            "api",
+            "v1",
+            "library",
+            "borrows",
+            "active"
+          ],
           "query": [
             {
               "key": "",
@@ -133,9 +156,16 @@
         },
         "url": {
           "raw": "localhost:8080/api/v1/library/books",
-          "host": ["localhost"],
+          "host": [
+            "localhost"
+          ],
           "port": "8080",
-          "path": ["api", "v1", "library", "book"],
+          "path": [
+            "api",
+            "v1",
+            "library",
+            "books"
+          ],
           "query": [
             {
               "key": "",
@@ -166,9 +196,16 @@
         },
         "url": {
           "raw": "localhost:8080/api/v1/library/borrowers",
-          "host": ["localhost"],
+          "host": [
+            "localhost"
+          ],
           "port": "8080",
-          "path": ["api", "v1", "library", "borrower"],
+          "path": [
+            "api",
+            "v1",
+            "library",
+            "borrowers"
+          ],
           "query": [
             {
               "key": "",
@@ -199,9 +236,16 @@
         },
         "url": {
           "raw": "localhost:8080/api/v1/library/borrows",
-          "host": ["localhost"],
+          "host": [
+            "localhost"
+          ],
           "port": "8080",
-          "path": ["api", "v1", "library", "borrow"],
+          "path": [
+            "api",
+            "v1",
+            "library",
+            "borrows"
+          ],
           "query": [
             {
               "key": "",
@@ -223,7 +267,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"isbn\": \"9780134685991\",\r\n  \"title\": \"Effective Java\",\r\n  \"author\": \"Joshua Bloch\"\r\n}\r\n",
+          "raw": "{\r\n    \"isbn\": \"9780134685991\",\r\n    \"title\": \"Effective Java\",\r\n    \"author\": \"Joshua Bloch\"\r\n}\r\n",
           "options": {
             "raw": {
               "language": "json"
@@ -231,14 +275,17 @@
           }
         },
         "url": {
-          "raw": "localhost:8080/api/v1/library/borrows/9a523bd8-257f-40da-8d09-b82c2b4e7a70/return",
-          "host": ["localhost"],
+          "raw": "localhost:8080/api/v1/library/borrows/4f228d0f-9919-4070-8753-be89e2861e08/return",
+          "host": [
+            "localhost"
+          ],
           "port": "8080",
           "path": [
             "api",
             "v1",
             "library",
-            "9a523bd8-257f-40da-8d09-b82c2b4e7a70",
+            "borrows",
+            "4f228d0f-9919-4070-8753-be89e2861e08",
             "return"
           ],
           "query": [
